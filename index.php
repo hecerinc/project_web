@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Home page</title>
-	<link rel="stylesheet" href="css/bootstrap-grid.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-	<link rel="stylesheet" href="css/style.css">
-</head>
-<body class="Homepage">
+<?php $body_class = "Homepage"; ?>
+<?php require_once 'header.php'; ?>
 	<div class="container-fluid p-0">
 		<div class="row no-gutters">
 			<div class="col-7 gradient left gradient-primary vh100"></div>
@@ -56,5 +48,4 @@
 			</div>
 		</div>
 	</div>
-</body>
-</html>
+<?php require_once 'footer.php'; ?>

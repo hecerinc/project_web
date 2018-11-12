@@ -16,7 +16,8 @@ h1, h2, h3, h4, h5, h6, strong {
 	font-weight: 600;
 }
 a {
-	display: block;
+	color: #3EB9DF;
+	text-decoration-style: dotted;
 }
 img {
 	display: block;
@@ -49,16 +50,61 @@ input[type="password"] {
 	height: 40px;
 	font-size: 14px;
 }
-
+ul,ol {
+	margin: 0;
+	padding: 0;
+}
+ol {
+	list-style: none;
+}
 
 /* Utils
 ----------------------------------------------------------------------------- */
 .vh100 {height: 100vh; }
 .p-0 {padding: 0 !important; }
+.m-0 {margin: 0 !important; }
 .f300 {font-weight: 300 !important;}
+.d-none{display: none;}
+.fleft{float: left;}
+.fright{ploat: right;}
+/* Nicholas Gallagher's clearfix:; */
+/**
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    contenteditable attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that are clearfixed.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.cf {
+    *zoom: 1;
+}
+
 
 /* General styles
 ----------------------------------------------------------------------------- */
+ul.inline li {
+	display: inline-block;
+}
+.img-bg {
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center top;
+}
 .btn {
 	border: 0 none;
 	border-radius: 30px;
@@ -67,6 +113,11 @@ input[type="password"] {
 	font-weight: 700;
 	height: 50px;
 	transition: all 300ms;
+}
+a.btn {
+	display: block;
+	text-align: center;
+	text-decoration: none;
 }
 .btn.border {
 	background-color: #fff;
@@ -81,8 +132,20 @@ input[type="password"] {
 	background-color: #3EB9DF;
 	color: #fff;
 }
-.form-control {
-	margin-bottom: 20px;
+.form-control {margin-bottom: 20px; }
+.tac{text-align: center;}
+
+/* Icons
+----------------------------------------------------------------------------- */
+.Icon {
+	background-repeat: no-repeat;
+	display: inline-block;
+}
+.Icon.Icon--retweet {
+	background-image: url(../img/retweet.svg);
+}
+.Icon.Icon--like {
+	background-image: url(../img/heart.svg);
 }
 
 /* Colors
@@ -96,13 +159,64 @@ input[type="password"] {
 .medgray {
 	color: #929292;
 }
+.darkgray {
+	color: #545454;
+}
 .primary-bg {
 	background-color: #3EB9DF;
 }
 .gradient.gradient-primary {
 	background: rgb(54,168,203);
-	background: linear-gradient(90deg, rgb(62,185,223) 27%, rgb(31,191,233) 100%);
+	/*background: linear-gradient(90deg, rgb(62,185,223) 27%, rgb(31,191,233) 100%);*/
+	background: linear-gradient(90deg, rgb(31,191,233) 27%, rgb(48,174,213) 100%);
 }
+/* 0. Header
+----------------------------------------------------------------------------- */
+.header {
+	height: 60px;
+}
+.header .row,
+.header .col,
+.header .d-flex,
+.header .container-fluid {
+	height: 100%;
+}
+a.logo {
+	background-color: #36A8CB;
+	height: 100%;
+	width: 110px;
+	display: block;
+}
+.mainNav {
+	margin-left: 40px;
+}
+.mainNav, .mainNav ul {
+	height: 100%;
+	list-style: none;
+}
+.mainNav li {
+	margin-right: 40px;
+}
+.mainNav li a {
+	font-weight: 600;
+	text-decoration: none;
+	color: #727272;
+}
+.header .rightNav {
+	/*padding-top: 8px;*/
+	padding-right: 8%;
+}
+.header .searchForm input {
+	min-width: 280px;
+}
+.header .logout {
+	font-weight: 600;
+	text-decoration: none;
+}
+.mr-5 {
+	margin-right: 40px;
+}
+
 /* 1. Home
 ----------------------------------------------------------------------------- */
 .Homepage .gradient.left {
@@ -123,7 +237,6 @@ input[type="password"] {
 	font-size: 2.2rem;
 	margin-top: 0;
 }
-
 /* ----   1.1 Register Form */
 .registerForm input {
 	font-size: 16px;
@@ -149,5 +262,202 @@ input[type="password"] {
 .loginForm .submit {
 	height: 40px;
 	font-size: 14px;
+}
+
+/* 2. My Feed
+----------------------------------------------------------------------------- */
+.Feed .bgimg {
+	width: 100%;
+	display: block;
+	height: 350px;
+}
+
+/* 2.1 Profile Sidebar
+----------------------------------------------------- */
+.Profile-Sidebar a {
+	text-decoration: none;
+}
+.Profile-Sidebar a:hover {
+	text-decoration: underline;
+}
+.ProfileCanopy-avatar {
+	position: absolute;
+	top: -87px;
+	left: 10px;
+}
+.ProfileAvatar {
+	background: #fff;
+	border: 8px solid #fff;
+	border-radius: 50%;
+	position: relative;
+	width: 250px;
+	height: 250px;
+}
+.ProfileAvatar a {
+	display: block;
+}
+.ProfileAvatar .ProfileAvatar-image {
+	-moz-force-broken-image-icon: 1;
+	border-radius: 50%;
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+.Profile-HeaderCard .Profile-handle {
+	font-size: 16px;
+}
+.Profile-HeaderCard .Profile-datejoin {
+	margin-top: 30px;
+}
+.Profile-HeaderCard .Profile-name {
+	font-size: 24px;
+}
+
+.Feed-Content {
+	margin-top: 4%;
+}
+/* 2.2 Profile Stats
+----------------------------------------------------- */
+.ProfileStats .actionBtn {
+	font-size: 14px;
+	line-height: 2.5rem;
+	margin-left: 40px;
+	width: 120px;
+	height: 40px;
+}
+.ProfileStats .ProfileStats-value {
+	font-size: 20px;
+}
+.ProfileStats .ProfileStats-label {
+	font-size: 15px;
+}
+a.ProfileStats-stat {
+	display: block;
+	text-decoration: none;
+}
+a.ProfileStats-stat > span {
+	display: block;
+}
+.ProfileStats p,
+a.ProfileStats-stat > span {
+	margin: 10px 0;
+}
+
+.ProfileStats-list .ProfileStats-item {
+	margin: 0 18px;
+}
+.ProfileStats-list .ProfileStats-item:first-child {
+	margin-left: 0;
+}
+.ProfileStats-stat.active.active {
+	color: #3EB9DF;
+}
+.ProfileStats-stat:focus,
+.ProfileStats-stat:active,
+.ProfileStats-stat:hover {
+	text-decoration: underline;
+}
+
+/* 2.3 Tweet Stream
+----------------------------------------------------- */
+.StreamContainer {
+	margin-right: 10%;
+	margin-bottom: 15%;
+}
+.tweet {
+	min-height: 50px;
+	border-bottom: 1px solid #e6ecf0;
+	cursor: pointer;
+	padding: 18px 12px 20px;
+	transition: background 200ms;
+}
+.tweet:hover {
+	background-color: #f6f6f6;
+}
+.tweet > .context {
+	margin-left: 62px;
+}
+.tweet-context {
+	font-size: 12px;
+	margin-bottom: 8px;
+	margin-left: -35px;
+}
+.tweet .content {
+	margin-left: 62px;
+}
+.tweet-context .Icon {
+	margin-right: 10px;
+	position: relative;
+	top: 6px;
+}
+.tweet-context  .Icon.Icon--retweet {
+	background-size: 22px;
+	width: 22px;
+	height: 22px;
+}
+.tweet-header .accountlinks-header {
+	margin-right: 5px;
+	text-decoration: none;
+}
+.tweet-header .accountlinks-header:hover span.fullName {
+	text-decoration: underline;
+}
+.tweet-header span.fullName {
+	color: #444;
+}
+.tweet-header span.handle {
+	margin-left: 15px;
+}
+.tweet-header .avatar {
+	border-radius: 50%;
+	float: left;
+	height: 50px;
+	margin-left: -62px;
+	margin-top: 3px;
+	position: absolute;
+	width: 50px;
+	-moz-force-broken-image-icon: 1;
+}
+.tweet .tweet-content p{
+	margin-top: 10px;
+	font-size: 15px;
+}
+.tweet-footer {
+	display: table;
+}
+.Tweet-actionList {
+	height: 18px;
+	margin-top: 8px;
+}
+.Tweet-action:hover,
+.Tweet-action:active,
+.Tweet-action:focus {
+	color: #3EB9DF;
+}
+.Tweet-action:active,
+.Tweet-action:focus {
+	outline: 1;
+}
+.Tweet-action {
+	color: #7D7D7D;
+	display: inline-block;
+	font-size: 14px;
+	font-weight: 700;
+	min-width: 80px;
+	text-decoration: none;
+	margin-right: 15px;
+}
+.Tweet-action .Icon {
+	background-size: 28px;
+	width: 28px;
+	height: 28px;
+	vertical-align: middle;
+	margin-right: 5px;
+}
+.Tweet-action .Icon.Icon--like {
+	background-size: 24px;
+	margin-right: 0;
 }
 
