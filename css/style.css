@@ -461,3 +461,100 @@ a.ProfileStats-stat > span {
 	margin-right: 0;
 }
 
+
+/* 3. News Feed
+----------------------------------------------------------------------------- */
+.container.Newsfeed-container {
+	margin-top: 40px;
+	margin-bottom: 10%;
+}
+
+/* 3.1 Profile Card
+----------------------------------------------------- */
+.ProfileCard {
+	box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+}
+.ProfileCard-bg {
+	height: 160px;
+	display: block;
+}
+
+.ProfileCard-content {
+	padding: 15px 22px;
+}
+.ProfileCard .ProfileCanopy-avatar {
+	top: 120px;
+	left: 30px;
+}
+.ProfileCard .ProfileAvatar {
+	width: 100px;
+	height: 100px;
+	border-width: 4px;
+}
+.ProfileCard-userFields a {
+	color: #7D7D7D;
+	text-decoration: none;
+}
+.ProfileCard-userFields a:hover {
+	text-decoration: underline;
+}
+.ProfileCard-userFields {
+	margin-left: 110px;
+	margin-bottom: 20px;
+}
+.ProfileCard-userFields .profileName {
+	font-size: 18px;
+}
+.ProfileCard-userFields .handle {
+	font-size: 14px;
+	color: #C0C0C0;
+}
+.ProfileCard .ProfileStats-item {
+	margin: 0 14px;
+}
+.ProfileCard .ProfileStats-item .ProfileStats-label {
+	font-size: 12px;
+}
+
+
+/* 3.2 Stream Composer
+----------------------------------------------------- */
+.Newsfeed .stream  {
+	margin-left: 5%;
+}
+.StreamComposer {
+	background-color: rgba(63, 187, 224, .1);
+	padding: 25px 15px;
+}
+.StreamComposer .avatarLink {
+	display: block;
+	width: 50px;
+	height: 50px;
+}
+.StreamComposer .avatarLink .avatarImg {
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	-moz-force-broken-image-icon: 1;
+}
+.StreamComposer textarea {
+	width: 100%;
+	resize: none;
+	height: 56px;
+	border: 1px solid rgba(51, 187, 221, .5);
+	border-radius: 5px;
+	padding: 10px;
+}
+.StreamComposer textarea::placeholder {
+    color: 	#80d2eb;
+    opacity: 1; /* Firefox */
+}
+
+.StreamComposer textarea:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #80d2eb;
+}
+
+.StreamComposer textarea::-ms-input-placeholder {
+	color: #80d2eb;
+}
+
