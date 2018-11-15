@@ -2,7 +2,7 @@
 
 
 // Base controller for shared logic
-namespace App\Controller;
+// namespace App\Controller;
 
 
 /**
@@ -10,8 +10,17 @@ namespace App\Controller;
  */
 class AppController {
 
-	public function initialize() {
+	private $request;
+	private $response;
 
+	function __construct($request = null, $response = null) {
+		$this->request = $request;
+		$this->response = $response;
+		$this->initialize();
+	}
+
+	public function initialize() {
+		// Do auth here?
 	}
 
 	public function isAuthorised() {

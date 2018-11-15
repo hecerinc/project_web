@@ -4,9 +4,12 @@
  * @author Hector Rincon
  */
 
+require_once dirname(__DIR__).'/dao/UserDAO.php';
+
+
 class User {
 
-	private var $db_id;
+	private $db_id = null;
 	var $username;
 	var $password;
 	var $email;
@@ -20,11 +23,18 @@ class User {
 	var $followers; // Users[]
 	var $following; // Users[]
 
-	public function __construct($username, $password, $email, $name, $created, $modified, $ppp, $cpp) {
+	public function __construct($username, $email, $password, $name = null, $created = null, $modified = null, $ppp = null, $cpp = null) {
 		$this->username = $username;
 		$this->password = $password;
 		$this->email 	= $email;
-		$this->name 	= $name;
+
+		if($name == null) {
+			$this->name = $username;
+		}
+		else {
+			$this->name = $name;
+		}
+
 		$this->created 	= $created;
 		$this->modified = $modified;
 
@@ -36,10 +46,23 @@ class User {
 		}
 	}
 
+
+
 	// Save to DB
 	public function save() {
-		// Insert
-		// Update
+		if($this->db_id == null) {
+			// Insert
+			$dbo = DataConnection::getDbConnection();
+			$userDAO = new UserDAO($dbo);
+			if($dbid = $userDAO->insert($this)) {
+				$this->db_id = $dbid;
+				return true;
+			}
+		}
+		else {
+			// Update
+		}
+		return false;
 	}
 
 	public function addFollower() {

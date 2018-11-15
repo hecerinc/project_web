@@ -24,7 +24,7 @@
 						<p class="lgray">The best place to complain about the world.</p>
 						<h2 class="medgray f300">Join now.</h2>
 					</div>
-					<form action="#" class="registerForm">
+					<form action="users/register" method="post" class="registerForm">
 						<fieldset>
 							<legend class="text"><strong>Sign up now</strong></legend>
 							<div class="form-control">

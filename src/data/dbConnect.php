@@ -26,12 +26,12 @@ class DataConnection {
 	var $conn;
 
 
-	private function __construct() {
+	private function __construct($hostname, $user, $pass, $db) {
 		$mysqli = new mysqli($hostname, $user, $pass, $db);
 		if ($mysqli->connect_error) {
 			var_dump("Failed to connect to MySQL database");
 	        die();
-			return null;
+			// return null;
 		}
 		$mysqli->set_charset('utf8');
 		$this->conn = $mysqli;
@@ -39,7 +39,7 @@ class DataConnection {
 	// Initializer
 	static function getDBConnection($hostname = DB_SERVER, $user = DB_USERNAME, $pass = DB_PASSWORD, $db = DB_DATABASE) {
 		if(self::$instance == NULL) {
-			return new DataConnection();
+			return new DataConnection($hostname, $user, $pass, $db);
 		}
 		return self::$instance;
  	}
