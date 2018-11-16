@@ -17,34 +17,34 @@
 							</div>
 							<div class="clearfix d-none" style="height: 60px"></div>
 							<div class="ProfileCard-userFields">
-								<a href="#" class="profileName"><strong>Lauren Heathrow</strong></a>
+								<a href="#" class="profileName"><strong><?= $user->name ?></strong></a>
 								<br />
-								<a href="#" class="handle">@laurenh</a>
+								<a href="#" class="handle">@<?= $user->username ?></a>
 							</div>
 							<div class="ProfileCard-stats ProfileStats">
 								<ul class="ProfileStats-list inline">
 									<li class="ProfileStats-item tac">
 										<a href="#" class="ProfileStats-stat text">
 											<span class="ProfileStats-label">Tweets</span>
-											<span class="ProfileStats-value"><strong>29K</strong></span>
+											<span class="ProfileStats-value"><strong>NA</strong></span>
 										</a>
 									</li>
 									<li class="ProfileStats-item tac">
 										<a href="#" class="ProfileStats-stat text">
 											<span class="ProfileStats-label">Followers</span>
-											<span class="ProfileStats-value"><strong>14.5K</strong></span>
+											<span class="ProfileStats-value"><strong>NA</strong></span>
 										</a>
 									</li>
 									<li class="ProfileStats-item tac">
 										<a href="#" class="ProfileStats-stat text">
 											<span class="ProfileStats-label">Following </span>
-											<span class="ProfileStats-value"><strong>389</strong></span>
+											<span class="ProfileStats-value"><strong><?= count($user->following) ?></strong></span>
 										</a>
 									</li>
 									<li class="ProfileStats-item tac">
 										<a href="#" class="ProfileStats-stat text">
 											<span class="ProfileStats-label">Likes </span>
-											<span class="ProfileStats-value"><strong>18K</strong></span>
+											<span class="ProfileStats-value"><strong>NA</strong></span>
 										</a>
 									</li>
 								</ul>
@@ -63,16 +63,20 @@
 								</a>
 							</div>
 							<div class="col-11">
-								<textarea name="tweetBody" placeholder="Complain about something..." class="StreamComposer-composer"></textarea>
+								<textarea name="tweetBody" placeholder="Complain about something..." class="TweetBody StreamComposer-composer"></textarea>
+								<div class="d-flex justify-content-end">
+									<a href="#" class="btn gradient gradient-primary TweetBtn" data-userid="<?= $user->getDbId() ?>" style="height: 40px; font-size: 16px; width: 120px; line-height: 2.4em; margin-top: 15px">Tweet</a>
+								</div>
 							</div>
 						</div>
 					</div>
 					<ol class="stream-items">
-						<?php for($i = 0; $i < 6; $i++): ?>
+						<?php if(!empty($feed)): ?>
+						<?php foreach($feed as $tweet): ?>
 						<li class="stream-item">
 							<div class="tweet">
 								<div class="context">
-									<div class="tweet-context medgray">
+									<div class="tweet-context medgray d-none">
 										<span class="Icon Icon--retweet"></span>
 										<span class="context-text">maggs retweeted</span>
 									</div>
@@ -81,33 +85,41 @@
 									<div class="tweet-header d-flex" style="width: 100%;">
 										<a href="#" class="accountlinks-header d-flex" style="flex-grow: 9">
 											<img src="img/profile-100x100.jpg" alt="Name" class="avatar">
-											<span class="fullName text"><strong>Magdalena Martinez</strong></span>
-											<span class="handle text">@maggs</span>
+											<span class="fullName text"><strong><?= $tweet->User->name ?></strong></span>
+											<span class="handle text">@<?= $tweet->User->username ?></span>
 										</a>
-										<div class="d-flex justify-content-end" style="flex-grow: 2"><small class="medgray tweet-timestamp">8 hours ago</small></div>
+										<div class="d-flex justify-content-end" style="flex-grow: 2"><small class="medgray tweet-timestamp"><?= $tweet->created ?></small></div>
 									</div>
 									<div class="tweet-content">
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam deleniti reiciendis laborum nam reprehenderit odio debitis consectetur voluptates, dolore commodi sit voluptas, libero adipisci sapiente modi obcaecati nesciunt ut nobis!</p>
+										<p><?= $tweet->body ?></p>
 									</div>
 									<div class="tweet-footer">
 										<div class="Tweet-actionList">
 											<a href="#" title="Like tweet" class="Tweet-action Tweet-action--like">
 												<span class="Icon Icon--like"></span>
-												<span class="Tweet-actionCount">2.1K</span>
+												<span class="Tweet-actionCount">0</span>
 											</a>
 											<a href="#" title="Retweet" class="Tweet-action Tweet-action--retweet">
 												<span class="Icon Icon--retweet"></span>
-												<span class="Tweet-actionCount">2.1K</span>
+												<span class="Tweet-actionCount">0</span>
 											</a>
 										</div>
 									</div>
 								</div>
 							</div>
 						</li>
-						<?php endfor; ?>
+						<?php endforeach; ?>
+						<?php else: ?>
+							<li class="tac notweets" style="margin-top: 8%">Nothing to show here :(</li>
+						<?php endif; ?>
 					</ol>
 				</section>
 			</div>
 		</div>
 	</div>
+	<script>
+		var currentusername = "<?= $user->name ?>";
+		var username = "<?= $user->username ?>";
+	</script>
+	<script src="http://localhost/thunder/js/tweet.js"></script>
 <?php require_once 'footer.php' ?>

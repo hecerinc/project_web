@@ -23,6 +23,8 @@ class User {
 	var $followers; // Users[]
 	var $following; // Users[]
 
+	var $tweets; // Tweets[]
+
 	public function __construct($username, $email, $password, $name = null, $created = null, $modified = null, $ppp = null, $cpp = null) {
 		$this->username = $username;
 		$this->password = $password;
@@ -65,6 +67,16 @@ class User {
 		return false;
 	}
 
+	public function loadTweets() {
+		// TODO: Change to tweetsDAO
+		$userDAO = new UserDAO(DataConnection::getDbConnection());
+		$this->tweets = $userDAO->getTweets($this->db_id);
+	}
+	public function getTweetCount() {
+		$userDAO = new UserDAO(DataConnection::getDbConnection());
+		$this->tweetCount = $userDAO->getTweetCount($this);
+	}
+
 	public function addFollower() {
 
 	}
@@ -74,7 +86,9 @@ class User {
 	}
 
 	public function fetchFollowing() {
-
+		$userDAO = new UserDAO(DataConnection::getDbConnection());
+		$this->following = $userDAO->getFollowing($this);
+		return $this->following;
 	}
 
 	public function setDbId($id) {

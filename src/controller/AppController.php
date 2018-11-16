@@ -13,6 +13,7 @@ class AppController {
 	private $request;
 	private $response;
 
+
 	function __construct($request = null, $response = null) {
 		$this->request = $request;
 		$this->response = $response;
@@ -21,6 +22,8 @@ class AppController {
 
 	public function initialize() {
 		// Do auth here?
+		// session_start();
+		// debug($_SESSION);
 	}
 
 	public function isAuthorised() {

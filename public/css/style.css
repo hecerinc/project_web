@@ -134,6 +134,15 @@ a.btn {
 }
 .form-control {margin-bottom: 20px; }
 .tac{text-align: center;}
+.errormsg {
+	color: #CA3447;
+	font-size: 12px;
+	/*background-color: rgba(204, 51, 68, .2);*/
+	/*text-align: center;*/
+	/*border-radius: 5px;*/
+	padding: 10px 0;
+
+}
 
 /* Icons
 ----------------------------------------------------------------------------- */
@@ -266,7 +275,7 @@ a.logo {
 
 /* 2. My Feed
 ----------------------------------------------------------------------------- */
-.Feed .bgimg {
+.bgimg {
 	width: 100%;
 	display: block;
 	height: 350px;

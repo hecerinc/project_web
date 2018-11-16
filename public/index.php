@@ -5,7 +5,7 @@
 			<div class="col-7 gradient left gradient-primary vh100"></div>
 			<div class="col-5">
 				<section class="HomeContentSection">
-					<form action="#" class="loginForm">
+					<form action="/thunder/users/login" method="post" class="loginForm">
 						<div class="container-fluid p-0">
 							<div class="row">
 								<div class="col-4">
@@ -20,11 +20,14 @@
 							</div>
 						</div>
 					</form>
+					<?php if(isset($error)): ?>
+						<p class="errormsg"><?= $error ?></p>
+					<?php endif; ?>
 					<div class="legend">
 						<p class="lgray">The best place to complain about the world.</p>
 						<h2 class="medgray f300">Join now.</h2>
 					</div>
-					<form action="users/register" method="post" class="registerForm">
+					<form action="/thunder/users/register" method="post" class="registerForm">
 						<fieldset>
 							<legend class="text"><strong>Sign up now</strong></legend>
 							<div class="form-control">

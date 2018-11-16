@@ -1,9 +1,16 @@
 <?php $body_class = "Feed"; ?>
 <?php require_once 'header.php'; ?>
-
+<?php
+function isSameUser($user) {
+	if(isset($_SESSION)) {
+		return $_SESSION['User']->username == $user->username;
+	}
+	return false;
+}
+?>
 	<?php require_once 'nav.php' ?>
 	<div class="mainContent">
-		<div class="bgimg img-bg" style="background-image: url(img/treesbg.jpg); background-position: center -440px;"></div>
+		<div class="bgimg img-bg" style="background-image: url('/thunder/img/treesbg.jpg'); background-position: center -440px;"></div>
 		<div class="container">
 			<div class="row">
 				<div class="col-3">
@@ -11,17 +18,19 @@
 						<div class="ProfileCanopy-avatar">
 							<div class="ProfileAvatar">
 								<a href="#" class="ProfileAvatar-container">
-									<img src="img/profile-500x500.jpg" alt="Lauren Graham" class="ProfileAvatar-image" />
+									<img src="/thunder/img/profile-500x500.jpg" alt="Lauren Graham" class="ProfileAvatar-image" />
 								</a>
 							</div>
 						</div>
 						<div class="clearfix" style="height: 200px"></div>
 						<div class="Profile-HeaderCard">
-							<a href="#" class="Profile-name darkgray"><strong>Lauren Heathrow</strong></a>
+							<a href="#" class="Profile-name darkgray"><strong><?= $feedUser->name ?></strong></a>
 							<br>
-							<a href="#" class="Profile-handle medgray">@laurenh</a>
-							<span class="medgray" style="margin-left: 30px;"><small>Follows you</small> </span>
-							<p class="Profile-datejoin lgray">Joined Oct 2018</p>
+							<a href="#" class="Profile-handle medgray">@<?= $feedUser->username  ?></a>
+							<?php if(isLoggedIn() && !isSameUser($feedUser)): ?>
+								<span class="medgray" style="margin-left: 30px;"><small>Follows you</small> </span>
+							<?php endif ?>
+							<p class="Profile-datejoin lgray">Joined <?= date("F Y", strtotime($feedUser->created)) ?></p>
 						</div>
 					</div>
 				</div>
@@ -32,7 +41,7 @@
 								<li class="ProfileStats-item tac">
 									<a href="#" class="ProfileStats-stat text active">
 										<span class="ProfileStats-label">Tweets</span>
-										<span class="ProfileStats-value"><strong>29K</strong></span>
+										<span class="ProfileStats-value"><strong><?= count($feedUser->tweets) ?></strong></span>
 									</a>
 								</li>
 								<li class="ProfileStats-item tac">
@@ -54,17 +63,22 @@
 									</a>
 								</li>
 							</ul>
-							<a href="#" class="actionBtn btn gradient gradient-primary FollowBtn align-self-center">Follow</a>
+							<?php if(isLoggedIn() && !isSameUser($feedUser)): ?>
+								<a href="#" data-toid="<?= $feedUser->getDbId() ?>" class="actionBtn btn gradient gradient-primary FollowBtn align-self-center">Follow</a>
+							<?php elseif(!isLoggedIn()): ?>
+								<a href="/thunder" class="actionBtn btn gradient gradient-primary align-self-center">Follow</a>
+							<?php endif; ?>
 						</div>
 						<div class="StreamContainer">
 							<h2 class="sectionTitle FeedTitle medgray">Tweets</h2>
 							<div class="stream">
+								<?php if(count($feedUser->tweets) > 0): ?>
 								<ol class="stream-items">
-									<?php for($i = 0; $i < 6; $i++): ?>
+									<?php foreach($feedUser->tweets as $tweet): ?>
 									<li class="stream-item">
 										<div class="tweet">
 											<div class="context">
-												<div class="tweet-context medgray">
+												<div class="tweet-context d-none medgray">
 													<span class="Icon Icon--retweet"></span>
 													<span class="context-text">maggs retweeted</span>
 												</div>
@@ -72,32 +86,35 @@
 											<div class="content">
 												<div class="tweet-header d-flex" style="width: 100%;">
 													<a href="#" class="accountlinks-header d-flex" style="flex-grow: 9">
-														<img src="img/profile-100x100.jpg" alt="Name" class="avatar">
-														<span class="fullName text"><strong>Magdalena Martinez</strong></span>
-														<span class="handle text">@maggs</span>
+														<img src="/thunder/img/profile-100x100.jpg" alt="Name" class="avatar">
+														<span class="fullName text"><strong><?= $feedUser->name ?></strong></span>
+														<span class="handle text">@<?= $feedUser->username ?></span>
 													</a>
-													<div class="d-flex justify-content-end" style="flex-grow: 2"><small class="medgray tweet-timestamp">8 hours ago</small></div>
+													<div class="d-flex justify-content-end" style="flex-grow: 2"><small class="medgray tweet-timestamp"><?= $tweet->created ?></small></div>
 												</div>
 												<div class="tweet-content">
-													<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam deleniti reiciendis laborum nam reprehenderit odio debitis consectetur voluptates, dolore commodi sit voluptas, libero adipisci sapiente modi obcaecati nesciunt ut nobis!</p>
+													<p><?= $tweet->body; ?></p>
 												</div>
 												<div class="tweet-footer">
 													<div class="Tweet-actionList">
 														<a href="#" title="Like tweet" class="Tweet-action Tweet-action--like">
 															<span class="Icon Icon--like"></span>
-															<span class="Tweet-actionCount">2.1K</span>
+															<span class="Tweet-actionCount">0</span>
 														</a>
 														<a href="#" title="Retweet" class="Tweet-action Tweet-action--retweet">
 															<span class="Icon Icon--retweet"></span>
-															<span class="Tweet-actionCount">2.1K</span>
+															<span class="Tweet-actionCount">0</span>
 														</a>
 													</div>
 												</div>
 											</div>
 										</div>
 									</li>
-									<?php endfor; ?>
+									<?php endforeach; ?>
 								</ol>
+								<?php else: ?>
+									<p class="tac light" style="font-size: 22px; margin-top: 8%"><?= isLoggedIn() && isSameUser($feedUser) ? "You haven't" : "User hasn't" ?> tweeted anything yet</p>
+								<?php endif; ?>
 							</div>
 						</div>
 					</div>
@@ -106,3 +123,4 @@
 		</div>
 	</div>
 <?php require_once 'footer.php'; ?>
+<script src="/thunder/js/follow.js"></script>
