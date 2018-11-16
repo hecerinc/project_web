@@ -19,6 +19,7 @@ CREATE TABLE tweets (
 	id int(11) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	body TEXT,
 	retweet_id int(11) UNSIGNED NOT NULL,
+	user_id int(11) UNSIGNED NOT NULL,
 	created DATETIME,
 	modified DATETIME
 ) Engine=InnoDB;
@@ -41,4 +42,5 @@ CREATE TABLE likes (
 ) Engine=InnoDB;
 
 ALTER TABLE tweets ADD CONSTRAINT fk_retweet_id FOREIGN KEY(retweet_id) REFERENCES tweets(id);
+ALTER TABLE tweets ADD CONSTRAINT fk_user_id FOREIGN KEY(user_id) REFERENCES users(id);
 
